@@ -15,12 +15,18 @@ public class SqlInjectionExample {
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/test?" + "user=myuser&password=mypass");
 
-            // Unsafe SQL query constructed by concatenating strings.
-            String query = "SELECT * FROM users WHERE user = '" + user + "' AND password = '" + pass + "'";
+            // 3. 使用带有 '?' 占位符的安全 SQL 查询模板
+            String query = "SELECT * FROM users WHERE user = ? AND password = ?";
 
-            stmt = conn.createStatement();
-            stmt.executeQuery(query);
+            // 4. 创建 PreparedStatement 对象
+            pstmt = conn.prepareStatement(query);
 
+            // 5. 安全地设置参数值
+            pstmt.setString(1, user); // 第一个 '?' 对应 user
+            pstmt.setString(2, pass); // 第二个 '?' 对应 pass
+
+            // 6. 执行查询，无需再传入 query 字符串
+            pstmt.executeQuery();
             // ...
 
         } catch (SQLException se) {
