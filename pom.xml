@@ -43,7 +43,7 @@
                     <!-- Specify the test you want to run -->
                     <includes>
                         <include>com/MainTest.java</include>
-                        <!-- <include>com/CoverageTest.java</include> -->
+                        <include>com/CoverageTest.java</include>
                     </includes>
                 </configuration>
             </plugin>
