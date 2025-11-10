@@ -14,10 +14,10 @@ run-name: ${{ github.actor }} is scanning code by code query languages
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ "main" ]
+    branches: [ "master" ]
   schedule:
     - cron: '41 8 * * 3'
 
